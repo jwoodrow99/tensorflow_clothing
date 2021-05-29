@@ -5,28 +5,10 @@ import numpy as np
 fashion_mnist = tf.keras.datasets.fashion_mnist
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
 
-# print(train_images.shape)
-# print(train_images[0])
-# print(train_labels)
-# print(test_images.shape)
-# print(test_labels.shape)
-
-# plt.imshow(train_images[0])
-# plt.show()
-
 train_images = train_images / 255.0
 test_images = test_images / 255.0
 
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
-# plt.figure(figsize=(15,15))
-# for i in range(25):
-#     plt.subplot(5, 5, i + 1)
-#     plt.imshow(train_images[i])
-#     plt.xlabel(class_names[train_labels[i]])
-#     plt.xticks([])
-#     plt.yticks([])
-#     pass
-# plt.show()
 
 model = tf.keras.Sequential()
 model.add(tf.keras.layers.Flatten(input_shape=(28, 28)))
@@ -39,7 +21,6 @@ model.summary()
 
 history = model.fit(train_images, train_labels, epochs=10)
 
-#history.history
 loss = history.history['loss']
 acc = history.history['accuracy']
 
@@ -83,14 +64,6 @@ def plot_value_array(i, predictions_array, true_label):
     thisplot[predicted_label].set_color('red')
     thisplot[true_label].set_color('blue')
     pass
-
-# i = 0
-# plt.figure(figsize=(6,3))
-# plt.subplot(1,2,1)
-# plot_image(i, predictions[i], test_labels, test_images)
-# plt.subplot(1,2,2)
-# plot_value_array(i, predictions[i],  test_labels)
-# plt.show()
 
 num_rows = 5
 num_cols = 3
